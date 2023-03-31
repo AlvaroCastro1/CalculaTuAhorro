@@ -2,7 +2,11 @@
 
 ## intalacion modulo para entotno virtual
 pip install virtualenv
-## ya existe el entotno virtual
+## Crear y activar el entotno virtual
+```
+python -m venv proyecto_CalculaTuAhorro
+```
+
 ## activar y trabajar con el entorno virtual
 1. posicionarse en la carpeta ''' proyecto_CalculaTuAhorro '''
 2. ejecutar EN CMD
