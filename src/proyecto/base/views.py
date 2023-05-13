@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Banco
+from django.views.generic.list import ListView
 # Create your views here.
+
+class Lista_Bancos(ListView):
+    model = Banco
 
 def lista_bancos(pedido):
     return HttpResponse('Lista de Bancos')
 
-from .models import Banco
 
 
 # import para el WebScrapping
