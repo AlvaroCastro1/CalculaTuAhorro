@@ -15,10 +15,13 @@ Scripts\activate
 ```
 3. instalar las dependencias/modulos
 ```
-pip install -r requirements.txt
+pip install -r ../requirements.txt
 ```
 
 # despues de haber instalado mas dependencias hará falta colocarlas (desde la carpeta raiz)
 ```
-pip freeze > requirements.txt
+pip freeze > ../requirements.txt
 ```
+
+# crear api para graficos
+django-admin startapp api
