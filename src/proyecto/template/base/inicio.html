@@ -174,8 +174,16 @@
       const cantidad = cantidadInput.value;
       const fecha = fechaInput.value;
 
+      // Calcular la diferencia de años
+      const fechaActual = new Date();
+      const fechaIngresada = new Date(fecha);
+      const diferenciaEnMilisegundos = fechaActual - fechaIngresada;
+      const diferenciaEnAnios = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24 * 365) * -1);
+
+      // Actualizar el contenido de la sección "Años de Diferencia"
       // Actualizar el contenido de la sección "Datos Ingresados"
-      datosIngresados.innerHTML = `Cantidad de Pesos Mexicanos: ${cantidad}<br>Fecha: ${fecha}`;
+      datosIngresados.innerHTML = `Cantidad de Pesos Mexicanos: ${cantidad}<br>Fecha: ${fecha}\n<br>Años de Diferencia: ${diferenciaEnAnios}`;
+      //datosIngresados.innerHTML = `Años de Diferencia: ${diferenciaEnAnios}`;
 
       // Limpiar los campos del formulario
       cantidadInput.value = '';
