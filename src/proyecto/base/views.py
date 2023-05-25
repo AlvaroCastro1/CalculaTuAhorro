@@ -7,17 +7,21 @@ from django.views.generic.list import ListView
 from django.http.response import JsonResponse
 # Create your views here.
 
+def inicio(request):
+    labels = []
+    data = []
+    
+    bancos = Banco.objects.order_by('-tasa')[:5]
+    for bank in bancos:
+        labels.append(bank.nombre)
+        data.append(float(bank.tasa))
+    return render(request, 'base/inicio.html', {'labels':labels, 'data': data})
 
 class Lista_Bancos(ListView):
     model = Banco
 
-
 def lista_bancos(pedido):
     return HttpResponse('Lista de Bancos')
-
-
-# import para el WebScrapping
-
 
 def generar_bancos(request):
     url_base = "https://simulador.condusef.gob.mx/condusefahorro/datos_ppa.php?capital_inicial=25%2C000&ahorro=1%2C200&periodo=28&fecha_inicio_base=2006-01-02&fecha_fin_base=2023-02-26&durante=5"

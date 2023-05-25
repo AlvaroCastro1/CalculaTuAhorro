@@ -19,5 +19,5 @@ window.addEventListener("load", async () => {
     await initChart();
     setInterval(async () => {
         await initChart();
-    }, 2000);
+    }, 20);
 });

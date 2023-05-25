@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listado de Bancos</title>
+    <style>
+      /* Estilos CSS para hacer la página responsive */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      #chart-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 20px auto;
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Contenedor principal -->
+    <div id="chart-container">
+      <!-- Gráfico -->
+      <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const ctx = document.getElementById('myChart');
+
+      const labels = {{ labels|safe }};
+      const data = {{ data|safe }};
+      const colors = [
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(255, 99, 132, 0.6)'
+      ];
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Tasas de los Mejores Bancos',
+            data: data,
+            backgroundColor: colors,
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
