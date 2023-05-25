@@ -1,73 +1,187 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Listado de Bancos</title>
-    <style>
-      /* Estilos CSS para hacer la página responsive */
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
 
-      #chart-container {
-        width: 100%;
-        max-width: 600px;
-        margin: 20px auto;
-      }
+<head>
+  <title>Listado de Bancos</title>
+  <style>
+    /* Estilos CSS para hacer la página responsive */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-      canvas {
-        display: block;
-        width: 100%;
-        height: auto;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Contenedor principal -->
-    <div id="chart-container">
-      <!-- Gráfico -->
-      <canvas id="myChart"></canvas>
-    </div>
+    #chart-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
-    <script>
-      const ctx = document.getElementById('myChart');
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #f8f8f8;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-      const labels = {{ labels|safe }};
-      const data = {{ data|safe }};
-      const colors = [
-        'rgba(255, 99, 132, 0.6)',
-        'rgba(54, 162, 235, 0.6)',
-        'rgba(75, 192, 192, 0.6)',
-        'rgba(255, 206, 86, 0.6)',
-        'rgba(153, 102, 255, 0.6)',
-        'rgba(255, 159, 64, 0.6)',
-        'rgba(255, 99, 132, 0.6)'
-      ];
+    h2 {
+      margin-top: 0;
+    }
 
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: 'Tasas de los Mejores Bancos',
-            data: data,
-            backgroundColor: colors,
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    input[type="number"],
+    input[type="date"] {
+      padding: 8px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    #datos-ingresados {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Actualizar Datos</h2>
+    <form id="data-form">
+      <label for="cantidad">Cantidad de Pesos Mexicanos:</label>
+      <input type="number" id="cantidad" name="cantidad" required>
+
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" name="fecha" required>
+
+      <button type="submit">Actualizar</button>
+    </form>
+
+    <h2>Datos Ingresados:</h2>
+    <p id="datos-ingresados"></p>
+  </div>
+  <!-- Contenedor principal -->
+  <div id="chart-container">
+    <!-- Gráfico -->
+    <canvas id="myChart"></canvas>
+    <canvas id="myChart2"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const ctx = document.getElementById('myChart');
+
+    const labels = {{ labels| safe }};
+    const data = {{ data| safe }};
+    const colors = [
+      'rgba(255, 99, 132, 0.6)',
+      'rgba(54, 162, 235, 0.6)',
+      'rgba(75, 192, 192, 0.6)',
+      'rgba(255, 206, 86, 0.6)',
+      'rgba(153, 102, 255, 0.6)',
+      'rgba(255, 159, 64, 0.6)',
+      'rgba(255, 99, 132, 0.6)'
+    ];
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Tasas de los Mejores Bancos',
+          data: data,
+          backgroundColor: colors,
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
           }
         }
-      });
-    </script>
-  </body>
+      }
+    });
+
+    const ctx2 = document.getElementById('myChart2');
+
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Área',
+            data: [10, 15, 8, 12, 6, 9],
+            borderColor: 'rgb(153, 156, 156)',
+            backgroundColor: 'rgb(183, 250, 223)', // área
+            fill: {
+              target: 'origin',
+              above: 'rgb(183, 250, 223)', // área
+              below: 'rgb(153, 156, 156)'
+            }
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // Obtener referencias a los elementos del formulario
+    const form = document.getElementById('data-form');
+    const cantidadInput = document.getElementById('cantidad');
+    const fechaInput = document.getElementById('fecha');
+    const datosIngresados = document.getElementById('datos-ingresados');
+
+    // Agregar el evento submit al formulario
+    form.addEventListener('submit', function (event) {
+      event.preventDefault(); // Evitar el envío del formulario
+
+      // Obtener los valores ingresados por el usuario
+      const cantidad = cantidadInput.value;
+      const fecha = fechaInput.value;
+
+      // Actualizar el contenido de la sección "Datos Ingresados"
+      datosIngresados.innerHTML = `Cantidad de Pesos Mexicanos: ${cantidad}<br>Fecha: ${fecha}`;
+
+      // Limpiar los campos del formulario
+      cantidadInput.value = '';
+      fechaInput.value = '';
+    });
+  </script>
+</body>
+
 </html>
