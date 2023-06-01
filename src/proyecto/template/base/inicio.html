@@ -184,11 +184,32 @@
       // Actualizar el contenido de la sección "Datos Ingresados"
       datosIngresados.innerHTML = `Cantidad de Pesos Mexicanos: ${cantidad}<br>Fecha: ${fecha}\n<br>Años de Diferencia: ${diferenciaEnAnios}`;
       //datosIngresados.innerHTML = `Años de Diferencia: ${diferenciaEnAnios}`;
+      const [anios, dinero] = calcular_dinero_anio(0.12, diferenciaEnAnios, cantidad);
+      alert(anios);
+      alert(dinero);
 
       // Limpiar los campos del formulario
       cantidadInput.value = '';
       fechaInput.value = '';
     });
+
+    function calcular_dinero_anio(tasa, tiempo, deposito) {
+      const anios = [];
+      const dinero_anio = [];
+      
+      const func = (d, tasa, t) => d * Math.exp(tasa * t);
+    
+      for (let i = 0; i < tiempo; i++) {
+        anios.push(i);
+      }
+    
+      for (let i = 0; i < tiempo; i++) {
+        dinero_anio.push(parseFloat(func(deposito, tasa, i).toFixed(2)));
+      }
+    
+      return [anios, dinero_anio];
+    }
+    
   </script>
 </body>
 

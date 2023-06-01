@@ -7,8 +7,6 @@ url_base = "https://simulador.condusef.gob.mx/condusefahorro/datos_ppa.php?capit
 resultado = requests.get(url_base)
 sopa = bs4.BeautifulSoup(resultado.text, "lxml")
 
-#print(sopa.select("title")[0].getText())
-
 tabla = sopa.find("table", class_="table table-striped")
 cantidad_bancos = len(tabla.select("tr"))
 # print(f"hay {cantidad_bancos} bancos")
@@ -21,30 +19,24 @@ for banco in range(cantidad_bancos -1):
     tasa = tabla.select("tr")[contador].select('td')[3].getText()
     contador+=1
     bancos[nombre_banco] = tasa
-#print(bancos)
+
+
+def calcular_dinero_anio(tasa, tiempo, deposito):
+    anios=[]
+    dinero_anio=[]
+    func = lambda d,tasa,t: d*np.exp(tasa*t)
+
+    for i in range(0,tiempo,1):
+        anios.append(i)
+
+    for i in range(tiempo):
+        dinero_anio.append(round(func(deposito, tasa,i),2))
+    print(anios)
+    print()
+    print(dinero_anio)
+
 #tiempo escogido
 tiempo=3
 #deposito inicial 
 deposito=20000
-#Modelo para gaficar
-func = lambda d,tasa,t: d*np.exp(tasa*t)
-
-x = np.linspace(-10, 20, 100)  # Genera 100 valores equidistantes en el rango -10 a 10
-
-for nombre, tasa_str in bancos.items():
-    tasa = float(tasa_str.strip('%')) / 100
-    y=func(deposito,tasa, x)
-    
-    print(nombre)
-    #print(y)
-    #solucion=ecuacion_dif(deposito,tasa, tiempo)  
-    #print(solucion.lhs)
-    #mp.scatter(tasa, float(solucion.rhs), color="blue", label=nombre)
-    mp.plot(x,y, label=nombre)
-mp.xlim(0,20)
-mp.ylim(deposito-deposito/4, deposito+deposito)
-mp.title('CRECIMIENTO DEL DEPOSITO EN FUNCION DEL INTERES ')
-mp.xlabel("AÑOS")
-mp.ylabel("CRECIMIENTO DEL DEPOSITO EN "+str(tiempo)+"AÑOS")
-mp.grid()
-mp.show()
+calcular_dinero_anio(0.12, 3, 2000)
