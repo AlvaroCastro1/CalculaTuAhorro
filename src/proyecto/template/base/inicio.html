@@ -1,216 +1,242 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>Listado de Bancos</title>
-  <style>
-    /* Estilos CSS para hacer la página responsive */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    #chart-container {
-      width: 100%;
-      max-width: 600px;
-      margin: 20px auto;
-    }
-
-    canvas {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #f8f8f8;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      margin-top: 0;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    label {
-      margin-bottom: 5px;
-    }
-
-    input[type="number"],
-    input[type="date"] {
-      padding: 8px;
-      border-radius: 3px;
-      border: 1px solid #ccc;
-      margin-bottom: 10px;
-    }
-
-    button[type="submit"] {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
-    #datos-ingresados {
-      margin-top: 20px;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <h2>Actualizar Datos</h2>
-    <form id="data-form">
-      <label for="cantidad">Cantidad de Pesos Mexicanos:</label>
-      <input type="number" id="cantidad" name="cantidad" required>
-
-      <label for="fecha">Fecha:</label>
-      <input type="date" id="fecha" name="fecha" required>
-
-      <button type="submit">Actualizar</button>
-    </form>
-
-    <h2>Datos Ingresados:</h2>
-    <p id="datos-ingresados"></p>
-  </div>
-  <!-- Contenedor principal -->
-  <div id="chart-container">
-    <!-- Gráfico -->
-    <canvas id="myChart"></canvas>
-    <canvas id="myChart2"></canvas>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <script>
-    const ctx = document.getElementById('myChart');
-
-    const labels = {{ labels| safe }};
-    const data = {{ data| safe }};
-    const colors = [
-      'rgba(255, 99, 132, 0.6)',
-      'rgba(54, 162, 235, 0.6)',
-      'rgba(75, 192, 192, 0.6)',
-      'rgba(255, 206, 86, 0.6)',
-      'rgba(153, 102, 255, 0.6)',
-      'rgba(255, 159, 64, 0.6)',
-      'rgba(255, 99, 132, 0.6)'
-    ];
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Tasas de los Mejores Bancos',
-          data: data,
-          backgroundColor: colors,
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
+  <head>
+    <title>Listado de Bancos</title>
+    <style>
+      /* Estilos CSS para hacer la página responsive */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
       }
-    });
 
-    const ctx2 = document.getElementById('myChart2');
+      #chart-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 20px auto;
+      }
 
-    new Chart(ctx2, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Área',
-            data: [10, 15, 8, 12, 6, 9],
-            borderColor: 'rgb(153, 156, 156)',
-            backgroundColor: 'rgb(183, 250, 223)', // área
-            fill: {
-              target: 'origin',
-              above: 'rgb(183, 250, 223)', // área
-              below: 'rgb(153, 156, 156)'
+      canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f8f8f8;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        margin-top: 0;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-bottom: 5px;
+      }
+
+      input[type="number"],
+      input[type="date"] {
+        padding: 8px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+      }
+
+      button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      #datos-ingresados {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Actualizar Datos</h2>
+      <form id="data-form">
+        <label for="cantidad">Cantidad de Pesos Mexicanos:</label>
+        <input type="number" id="cantidad" name="cantidad" required />
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required />
+
+        <button type="submit">Actualizar</button>
+      </form>
+
+      <h2>Datos Ingresados:</h2>
+      <p id="datos-ingresados"></p>
+    </div>
+    <!-- Contenedor principal -->
+    <div id="chart-container">
+      <!-- Gráfico -->
+      <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const ctx = document.getElementById('myChart');
+
+      const labels = {{ labels| safe }};
+      const data = {{ data| safe }};
+      const colors = [
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(255, 99, 132, 0.6)'
+      ];
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Tasas de los Mejores Bancos',
+            data: data,
+            backgroundColor: colors,
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
             }
           }
-        ]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true
+        }
+      });
+
+      // Obtener referencias a los elementos del formulario
+      const form = document.getElementById('data-form');
+      const cantidadInput = document.getElementById('cantidad');
+      const fechaInput = document.getElementById('fecha');
+      const datosIngresados = document.getElementById('datos-ingresados');
+
+      // Agregar el evento submit al formulario
+      form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Evitar el envío del formulario
+
+        // Obtener los valores ingresados por el usuario
+        const cantidad = cantidadInput.value;
+        const fecha = fechaInput.value;
+
+        // Calcular la diferencia de años
+        const fechaActual = new Date();
+        const fechaIngresada = new Date(fecha);
+        const diferenciaEnMilisegundos = fechaActual - fechaIngresada;
+        const diferenciaEnAnios = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24 * 365) * -1);
+
+        // Verificar que la diferencia de años sea mayor a 1
+        if (diferenciaEnAnios <= 1) {
+          alert('La diferencia de años debe ser mayor a 1 para generar las gráficas.');
+          return;
+        }
+
+        // Actualizar el contenido de la sección "Años de Diferencia"
+        // Actualizar el contenido de la sección "Datos Ingresados"
+        datosIngresados.innerHTML = `Cantidad de Pesos Mexicanos: ${cantidad}<br>Fecha: ${fecha}\n<br>Años de Diferencia: ${diferenciaEnAnios}`;
+        const etiquetas = [];
+        const datos = [];
+        const titulos = [];
+
+        // Verificar que los arreglos coincidan
+        if (labels.length === data.length) {
+          // Recorrer los arreglos
+          for (let i = 0; i < labels.length; i++) {
+            titulos.push(labels[i]);
+            const [anios, dinero] = calcular_dinero_anio(data[i], diferenciaEnAnios, cantidad);
+            etiquetas.push(anios);
+            datos.push(dinero);
           }
+        } else {
+          console.error('Los arreglos "labels" y "data" no tienen la misma longitud.');
+        }
+
+        generarGraficas(etiquetas, datos, titulos);
+
+        // Limpiar los campos del formulario
+        cantidadInput.value = '';
+        fechaInput.value = '';
+      });
+
+      function calcular_dinero_anio(tasa, tiempo, deposito) {
+        const anios = [];
+        const dinero_anio = [];
+
+        const func = (d, tasa, t) => d * Math.exp(tasa * t);
+
+        for (let i = 0; i < tiempo; i++) {
+          anios.push(i);
+        }
+
+        for (let i = 0; i < tiempo; i++) {
+          dinero_anio.push(parseFloat(func(deposito, tasa, i).toFixed(2)));
+        }
+
+        return [anios, dinero_anio];
+      }
+
+      function generarGraficas(etiquetas, datos, titulos) {
+        const chartContainer = document.getElementById('chart-container');
+
+        // Eliminar gráficas anteriores
+        chartContainer.innerHTML = '';
+
+        for (let i = 0; i < etiquetas.length; i++) {
+          const canvas = document.createElement('canvas');
+          chartContainer.appendChild(canvas);
+
+          const ctx = canvas.getContext('2d');
+
+          const data = datos[i];
+          const labels = etiquetas[i];
+          const titulo = titulos[i];
+
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: titulo, // Utilizar el título correspondiente
+                data: data,
+                backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
         }
       }
-    });
-
-    // Obtener referencias a los elementos del formulario
-    const form = document.getElementById('data-form');
-    const cantidadInput = document.getElementById('cantidad');
-    const fechaInput = document.getElementById('fecha');
-    const datosIngresados = document.getElementById('datos-ingresados');
-
-    // Agregar el evento submit al formulario
-    form.addEventListener('submit', function (event) {
-      event.preventDefault(); // Evitar el envío del formulario
-
-      // Obtener los valores ingresados por el usuario
-      const cantidad = cantidadInput.value;
-      const fecha = fechaInput.value;
-
-      // Calcular la diferencia de años
-      const fechaActual = new Date();
-      const fechaIngresada = new Date(fecha);
-      const diferenciaEnMilisegundos = fechaActual - fechaIngresada;
-      const diferenciaEnAnios = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24 * 365) * -1);
-
-      // Actualizar el contenido de la sección "Años de Diferencia"
-      // Actualizar el contenido de la sección "Datos Ingresados"
-      datosIngresados.innerHTML = `Cantidad de Pesos Mexicanos: ${cantidad}<br>Fecha: ${fecha}\n<br>Años de Diferencia: ${diferenciaEnAnios}`;
-      //datosIngresados.innerHTML = `Años de Diferencia: ${diferenciaEnAnios}`;
-      const [anios, dinero] = calcular_dinero_anio(0.12, diferenciaEnAnios, cantidad);
-      alert(anios);
-      alert(dinero);
-
-      // Limpiar los campos del formulario
-      cantidadInput.value = '';
-      fechaInput.value = '';
-    });
-
-    function calcular_dinero_anio(tasa, tiempo, deposito) {
-      const anios = [];
-      const dinero_anio = [];
-      
-      const func = (d, tasa, t) => d * Math.exp(tasa * t);
-    
-      for (let i = 0; i < tiempo; i++) {
-        anios.push(i);
-      }
-    
-      for (let i = 0; i < tiempo; i++) {
-        dinero_anio.push(parseFloat(func(deposito, tasa, i).toFixed(2)));
-      }
-    
-      return [anios, dinero_anio];
-    }
-    
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

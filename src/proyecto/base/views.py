@@ -11,7 +11,7 @@ def inicio(request):
     labels = []
     data = []
     
-    bancos = Banco.objects.order_by('-tasa')[:5]
+    bancos = Banco.objects.order_by('-tasa')
     for bank in bancos:
         labels.append(bank.nombre)
         data.append(float(bank.tasa))
