@@ -1,331 +1,387 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Listado de Bancos</title>
-    <style>
-      /* Estilos CSS para hacer la página responsive */
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+<head>
+  <title>Listado de Bancos</title>
+  <style>
+    /* Estilos CSS para hacer la página responsive */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'calibri';
+    }
+
+    header {
+      background: url("{% static 'images/fondo.jpg' %}");
+      height: 450px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      color: black;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 0;
+    }
+
+    section h1 {
+      font-size: 44px;
+
+        {
+        % comment %
       }
 
-      body {
-        font-family: 'calibri';
+      color: white;
+
+        {
+        % endcomment %
       }
+    }
 
-      header {
-        background: url("{% static 'images/fondo.jpg' %}");
-        height: 450px;
-        background-size: cover;
-        background-repeat: no-repeat;
-        color: black;
-      }
+    .conte {
+      text-align: center;
+    }
 
-      section {
-        max-width: 1000px;
-        margin: auto;
-        padding: 30px 0;
-      }
+    .conte p {
+      font-size: 60px;
+      font-weight: bold;
+      margin: 1em 0;
+      color: #3d393a;
+      font-family: 'Lobster', cursive;
+    }
 
-      section h1 {
-        font-size: 44px;
-        {% comment %} color: white; {% endcomment %}
-      }
+    .slogan p {
+      font-size: 60px;
+      font-weight: bold;
+      margin: 1em 0;
+      font-family: 'Lobster', cursive;
+    }
 
-      .conte {
-        text-align: center;
-      }
+    #slogan {
+      color: #858887;
+      font-family: 'Lobster', cursive;
+      font-family: 'Pacifico', cursive;
+    }
 
-      .conte p {
-        font-size: 60px;
-        font-weight: bold;
-        margin: 1em 0;
-        color: #3d393a;
-        font-family: 'Lobster', cursive;
-      }
+    .conte a {
+      color: white;
+      text-decoration: none;
+      background: #8BC34A;
+      padding: 4px 20px;
+      border-radius: 30px;
+      font-size: 30px;
+      margin: 10px;
+    }
 
-      .slogan p {
-        font-size: 60px;
-        font-weight: bold;
-        margin: 1em 0;
-        font-family: 'Lobster', cursive;
-      }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-      #slogan {
-        color: #858887;
-        font-family: 'Lobster', cursive;
-        font-family: 'Pacifico', cursive;
-      }
+    #chart-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+    }
 
-      .conte a {
-        color: white;
-        text-decoration: none;
-        background: #8BC34A;
-        padding: 4px 20px;
-        border-radius: 30px;
-        font-size: 30px;
-        margin: 10px;
-      }
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #f8f8f8;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-      #chart-container {
-        width: 100%;
-        max-width: 600px;
-        margin: 20px auto;
-      }
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
 
-      canvas {
-        display: block;
-        width: 100%;
-        height: auto;
-      }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
 
-      .container {
-        max-width: 600px;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: #f8f8f8;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
+    label {
+      margin-bottom: 5px;
+      color: #555;
+    }
 
-      h2 {
-        margin-top: 0;
-        color: #333;
-      }
+    input[type="number"],
+    input[type="date"] {
+      padding: 8px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
 
-      form {
-        display: flex;
-        flex-direction: column;
-      }
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
 
-      label {
-        margin-bottom: 5px;
-        color: #555;
-      }
+    #datos-ingresados {
+      margin-top: 20px;
+      color: #333;
+    }
 
-      input[type="number"],
-      input[type="date"] {
-        padding: 8px;
-        border-radius: 3px;
-        border: 1px solid #ccc;
-        margin-bottom: 10px;
-      }
+    #mision {
+      background: #78909c;
+      padding: 1em;
+      margin-top: 2em;
+      margin-left: 2em;
+      -webkit-transition: all 2s ease-out;
+      -moz-transition: all 2s ease-out;
+      -ms-transition: all 2s ease-out;
+      -o-transition: all 2s ease-out;
+      transition: all 2s ease-out;
+      display: inline-block;
+      vertical-align: top;
+      margin-bottom: 2em;
+    }
 
-      button[type="submit"] {
-        padding: 10px 20px;
-        background-color: #4caf50;
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-      }
+    #mision:hover {
+      background: #465a65;
+      -moz-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -webkit-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -o-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -ms-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -webkit-transition: all 1s ease-in;
+      -moz-transition: all 1s ease-in;
+      -ms-transition: all 1s ease-in;
+      -o-transition: all 1s ease-in;
+      transition: all 1s ease-in;
+    }
 
-      #datos-ingresados {
-        margin-top: 20px;
-        color: #333;
-      }
-    </style>
-  </head>
+    #mision dt {
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+    }
 
-  <body>
-    <header>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap"
-        rel="stylesheet"
-      />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap"
-        rel="stylesheet"
-      />
-      <section>
-        <div class="conte">
-          <p>Bienvenido a Calcula Tu Ahorro</p>
-          <p id="slogan">¡Lo mejor te espera!</p>
-        </div>
-      </section>
-    </header>
-    <div class="container">
-      <h2>Actualizar Datos</h2>
-      <form id="data-form">
-        <label for="cantidad">Cantidad de Pesos Mexicanos:</label>
-        <input type="number" id="cantidad" name="cantidad" required />
+    #mision dd {
+      text-align: left;
+      color: #fff;
+      margin-top: .5em;
+      line-height: 1.5em;
+    }
+  </style>
+</head>
 
-        <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha" required />
+<body>
+  <header>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap" rel="stylesheet" />
+    <section>
+      <div class="conte">
+        <p>Bienvenido a Calcula Tu Ahorro</p>
+        <p id="slogan">¡Lo mejor te espera!</p>
+      </div>
+    </section>
+  </header>
 
-        <button type="submit">Actualizar</button>
-      </form>
+  <section>
+    <section id="mision">
+      <dt>Misión</dt>
+      <dd>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam placeat voluptatem eos numquam dicta, tenetur beatae accusantium adipisci labore ab asperiores sapiente fuga fugit, eveniet quasi impedit debitis, hic dolor?</dd>
+      <img id="logo" src="{% static 'images/logo.png' %}">
+    </section>
+  </section>
 
-      <h2>Datos Ingresados:</h2>
-      <p id="datos-ingresados"></p>
-    </div>
-    <!-- Contenedor principal -->
-    <div id="chart-container">
-      <!-- Gráfico -->
-      <canvas id="myChart"></canvas>
-    </div>
+  <div class="container">
+    <h2>Actualizar Datos</h2>
+    <form id="data-form">
+      <label for="cantidad">Cantidad de Pesos Mexicanos:</label>
+      <input type="number" id="cantidad" name="cantidad" required />
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" name="fecha" required />
 
-    <script>
-      const ctx = document.getElementById('myChart');
+      <button type="submit">Actualizar</button>
+    </form>
 
-      const labels = {{ labels| safe }};
-      const data = {{ data| safe }};
-      const colors = [
-        'rgba(255, 99, 132, 0.6)',
-        'rgba(54, 162, 235, 0.6)',
-        'rgba(75, 192, 192, 0.6)',
-        'rgba(255, 206, 86, 0.6)',
-        'rgba(153, 102, 255, 0.6)',
-        'rgba(255, 159, 64, 0.6)',
-        'rgba(255, 99, 132, 0.6)'
-      ];
+    <h2>Datos Ingresados:</h2>
+    <p id="datos-ingresados"></p>
+  </div>
+  <!-- Contenedor principal -->
+  <div id="chart-container">
+    <!-- Gráfico -->
+    <canvas id="myChart"></canvas>
+  </div>
 
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: 'Tasas de los Mejores Bancos',
-            data: data,
-            backgroundColor: colors,
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const ctx = document.getElementById('myChart');
+
+    const labels = {{ labels| safe }};
+    const data = {{ data| safe }};
+    const colors = [
+      'rgba(255, 99, 132, 0.6)',
+      'rgba(54, 162, 235, 0.6)',
+      'rgba(75, 192, 192, 0.6)',
+      'rgba(255, 206, 86, 0.6)',
+      'rgba(153, 102, 255, 0.6)',
+      'rgba(255, 159, 64, 0.6)',
+      'rgba(255, 99, 132, 0.6)'
+    ];
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Tasas de los Mejores Bancos',
+          data: data,
+          backgroundColor: colors,
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
           }
         }
-      });
+      }
+    });
 
-      // Obtener referencias a los elementos del formulario
-      const form = document.getElementById('data-form');
-      const cantidadInput = document.getElementById('cantidad');
-      const fechaInput = document.getElementById('fecha');
-      const datosIngresados = document.getElementById('datos-ingresados');
+    // Obtener referencias a los elementos del formulario
+    const form = document.getElementById('data-form');
+    const cantidadInput = document.getElementById('cantidad');
+    const fechaInput = document.getElementById('fecha');
+    const datosIngresados = document.getElementById('datos-ingresados');
 
-      // Agregar el evento submit al formulario
-      form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Evitar el envío del formulario
+    // Agregar el evento submit al formulario
+    form.addEventListener('submit', function (event) {
+      event.preventDefault(); // Evitar el envío del formulario
 
-        // Obtener los valores ingresados por el usuario
-        const cantidad = cantidadInput.value;
-        const fecha = fechaInput.value;
+      // Obtener los valores ingresados por el usuario
+      const cantidad = cantidadInput.value;
+      const fecha = fechaInput.value;
 
-        // Calcular la diferencia de años
-        const fechaActual = new Date();
-        const fechaIngresada = new Date(fecha);
-        const diferenciaEnMilisegundos = fechaActual - fechaIngresada;
-        const diferenciaEnAnios = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24 * 365) * -1);
+      // Calcular la diferencia de años
+      const fechaActual = new Date();
+      const fechaIngresada = new Date(fecha);
+      const diferenciaEnMilisegundos = fechaActual - fechaIngresada;
+      const diferenciaEnAnios = Math.floor(diferenciaEnMilisegundos / (1000 * 60 * 60 * 24 * 365) * -1);
 
-        // Verificar que la diferencia de años sea mayor a 1
-        if (diferenciaEnAnios <= 1) {
-          alert('La diferencia de años debe ser mayor a 1 para generar las gráficas.');
-          return;
-        }
-
-        // Actualizar el contenido de la sección "Años de Diferencia"
-        // Actualizar el contenido de la sección "Datos Ingresados"
-        datosIngresados.innerHTML = `Cantidad de Pesos Mexicanos: ${cantidad}<br>Fecha: ${fecha}\n<br>Años de Diferencia: ${diferenciaEnAnios}`;
-        const etiquetas = [];
-        const datos = [];
-        const titulos = [];
-
-        // Verificar que los arreglos coincidan
-        if (labels.length === data.length) {
-          // Recorrer los arreglos
-          for (let i = 0; i < labels.length; i++) {
-            titulos.push(labels[i]);
-            const [anios, dinero] = calcular_dinero_anio(data[i], diferenciaEnAnios, cantidad);
-            etiquetas.push(anios);
-            datos.push(dinero);
-          }
-        } else {
-          console.error('Los arreglos "labels" y "data" no tienen la misma longitud.');
-        }
-
-        generarGraficas(etiquetas, datos, titulos);
-
-        // Limpiar los campos del formulario
-        cantidadInput.value = '';
-        fechaInput.value = '';
-      });
-
-      function calcular_dinero_anio(tasa, tiempo, deposito) {
-        const anios = [];
-        const dinero_anio = [];
-
-        const func = (d, tasa, t) => d * Math.exp(tasa * t);
-
-        for (let i = 0; i < tiempo; i++) {
-          anios.push(i);
-        }
-
-        for (let i = 0; i < tiempo; i++) {
-          dinero_anio.push(parseFloat(func(deposito, tasa, i).toFixed(2)));
-        }
-
-        return [anios, dinero_anio];
+      // Verificar que la diferencia de años sea mayor a 1
+      if (diferenciaEnAnios <= 1) {
+        alert('La diferencia de años debe ser mayor a 1 para generar las gráficas.');
+        return;
       }
 
-      function generarGraficas(etiquetas, datos, titulos) {
-        const chartContainer = document.getElementById('chart-container');
+      // Actualizar el contenido de la sección "Años de Diferencia"
+      // Actualizar el contenido de la sección "Datos Ingresados"
+      datosIngresados.innerHTML = `Cantidad de Pesos Mexicanos: ${cantidad}<br>Fecha: ${fecha}\n<br>Años de Diferencia: ${diferenciaEnAnios}`;
+      const etiquetas = [];
+      const datos = [];
+      const titulos = [];
 
-        // Eliminar gráficas anteriores
-        chartContainer.innerHTML = '';
+      // Verificar que los arreglos coincidan
+      if (labels.length === data.length) {
+        // Recorrer los arreglos
+        for (let i = 0; i < labels.length; i++) {
+          titulos.push(labels[i]);
+          const [anios, dinero] = calcular_dinero_anio(data[i], diferenciaEnAnios, cantidad);
+          etiquetas.push(anios);
+          datos.push(dinero);
+        }
+      } else {
+        console.error('Los arreglos "labels" y "data" no tienen la misma longitud.');
+      }
 
-        for (let i = 0; i < etiquetas.length; i++) {
-          const canvas = document.createElement('canvas');
-          chartContainer.appendChild(canvas);
+      generarGraficas(etiquetas, datos, titulos);
 
-          const ctx = canvas.getContext('2d');
+      // Limpiar los campos del formulario
+      cantidadInput.value = '';
+      fechaInput.value = '';
+    });
 
-          const data = datos[i];
-          const labels = etiquetas[i];
-          const titulo = titulos[i];
+    function calcular_dinero_anio(tasa, tiempo, deposito) {
+      const anios = [];
+      const dinero_anio = [];
 
-          new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: labels,
-              datasets: [{
-                label: titulo, // Utilizar el título correspondiente
-                data: data,
-                backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-              }]
-            },
-            options: {
-              responsive: true,
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
+      const func = (d, tasa, t) => d * Math.exp(tasa * t);
+
+      for (let i = 0; i < tiempo; i++) {
+        anios.push(i);
+      }
+
+      for (let i = 0; i < tiempo; i++) {
+        dinero_anio.push(parseFloat(func(deposito, tasa, i).toFixed(2)));
+      }
+
+      return [anios, dinero_anio];
+    }
+
+    function generarGraficas(etiquetas, datos, titulos) {
+      const chartContainer = document.getElementById('chart-container');
+
+      // Eliminar gráficas anteriores
+      chartContainer.innerHTML = '';
+
+      for (let i = 0; i < etiquetas.length; i++) {
+        const canvas = document.createElement('canvas');
+        chartContainer.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+
+        const data = datos[i];
+        const labels = etiquetas[i];
+        const titulo = titulos[i];
+
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: titulo, // Utilizar el título correspondiente
+              data: data,
+              backgroundColor: 'rgba(255, 99, 132, 0.6)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true
               }
             }
-          });
-        }
+          }
+        });
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>
