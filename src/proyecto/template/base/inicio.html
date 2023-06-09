@@ -1,9 +1,75 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
     <title>Listado de Bancos</title>
     <style>
       /* Estilos CSS para hacer la página responsive */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'calibri';
+      }
+
+      header {
+        background: url("{% static 'images/fondo.jpg' %}");
+        height: 450px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: black;
+      }
+
+      section {
+        max-width: 1000px;
+        margin: auto;
+        padding: 30px 0;
+      }
+
+      section h1 {
+        font-size: 44px;
+        {% comment %} color: white; {% endcomment %}
+      }
+
+      .conte {
+        text-align: center;
+      }
+
+      .conte p {
+        font-size: 60px;
+        font-weight: bold;
+        margin: 1em 0;
+        color: #3d393a;
+        font-family: 'Lobster', cursive;
+      }
+
+      .slogan p {
+        font-size: 60px;
+        font-weight: bold;
+        margin: 1em 0;
+        font-family: 'Lobster', cursive;
+      }
+
+      #slogan {
+        color: #858887;
+        font-family: 'Lobster', cursive;
+        font-family: 'Pacifico', cursive;
+      }
+
+      .conte a {
+        color: white;
+        text-decoration: none;
+        background: #8BC34A;
+        padding: 4px 20px;
+        border-radius: 30px;
+        font-size: 30px;
+        margin: 10px;
+      }
+
       body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -33,6 +99,7 @@
 
       h2 {
         margin-top: 0;
+        color: #333;
       }
 
       form {
@@ -42,6 +109,7 @@
 
       label {
         margin-bottom: 5px;
+        color: #555;
       }
 
       input[type="number"],
@@ -63,11 +131,32 @@
 
       #datos-ingresados {
         margin-top: 20px;
+        color: #333;
       }
     </style>
   </head>
 
   <body>
+    <header>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap"
+        rel="stylesheet"
+      />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap"
+        rel="stylesheet"
+      />
+      <section>
+        <div class="conte">
+          <p>Bienvenido a Calcula Tu Ahorro</p>
+          <p id="slogan">¡Lo mejor te espera!</p>
+        </div>
+      </section>
+    </header>
     <div class="container">
       <h2>Actualizar Datos</h2>
       <form id="data-form">
