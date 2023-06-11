@@ -14,13 +14,23 @@ cantidad_bancos = len(tabla.select("tr"))
 
 contador = 1
 bancos={}
+base = "https://simulador.condusef.gob.mx/condusefahorro/"
 # se quita un elemento
 for banco in range(cantidad_bancos -1):
     nombre_banco = tabla.select("tr")[contador].select('img')[0]['alt']
+    img_banco = tabla.select("tr")[contador].select('img')[0]['src']
+    imagen_curos_1 = requests.get(base+img_banco)
+    # en binario
+    # wb escribir en binario
+    ruta="src/proyecto/api/static/images/img_bancos/"
+    f = open(ruta+nombre_banco+".jpg", "wb")
+    f.write(imagen_curos_1.content)
+    
+    
     tasa = tabla.select("tr")[contador].select('td')[3].getText()
     contador+=1
     bancos[nombre_banco] = tasa
-print(bancos)
+# print(bancos)
 
 # bancos=[]
 # for td in tabla.findAll('img'):
