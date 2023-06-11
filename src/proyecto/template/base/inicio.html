@@ -14,9 +14,10 @@
     }
 
     body {
+      background: #FFFFFF;
       font-family: 'calibri';
+      color: black;
     }
-
     header {
       background: url("{% static 'images/fondo.jpg' %}");
       height: 450px;
@@ -27,6 +28,11 @@
 
     section {
       max-width: 1000px;
+      margin: auto;
+      padding: 30px 0;
+    }
+    section2 {
+      max-width: 800px;
       margin: auto;
       padding: 30px 0;
     }
@@ -68,6 +74,17 @@
       color: #858887;
       font-family: 'Lobster', cursive;
       font-family: 'Pacifico', cursive;
+    }
+    #inicio {
+      color: #000000;
+      font-family: 'Lobster', cursive;
+      font-family: 'Pacifico', cursive;
+    }
+    .inicio p {
+      font-size: 60px;
+      font-weight: bold;
+      margin: 1em 0;
+      font-family: 'Lobster', cursive;
     }
 
     .conte a {
@@ -145,10 +162,10 @@
     }
 
     #mision {
-      background: #78909c;
+      background: #465a65;
       padding: 1em;
-      margin-top: 2em;
-      margin-left: 2em;
+      margin-top: 1em;
+      margin-left: 1em;
       -webkit-transition: all 2s ease-out;
       -moz-transition: all 2s ease-out;
       -ms-transition: all 2s ease-out;
@@ -185,10 +202,190 @@
       margin-top: .5em;
       line-height: 1.5em;
     }
+
+    
+    #logo {
+      background: #FFFFFF;
+      padding: 1em;
+      margin-top: 2em;
+      margin-left: 2em;
+      -webkit-transition: all 2s ease-out;
+      -moz-transition: all 2s ease-out;
+      -ms-transition: all 2s ease-out;
+      -o-transition: all 2s ease-out;
+      transition: all 2s ease-out;
+      display: inline-block;
+      vertical-align: top;
+      margin-bottom: 2em;
+    }
+    #logo2 {
+      background-color: #0a141d;;
+      padding: 1em;
+      margin-top: 2em;
+      margin-left: 2em;
+      -webkit-transition: all 2s ease-out;
+      -moz-transition: all 2s ease-out;
+      -ms-transition: all 2s ease-out;
+      -o-transition: all 2s ease-out;
+      transition: all 2s ease-out;
+      display: inline-block;
+      vertical-align: top;
+      margin-bottom: 2em;
+    }
+
+    #logo:hover {
+      background: #e7e6e8;
+      -moz-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -webkit-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -o-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -ms-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -webkit-transition: all 1s ease-in;
+      -moz-transition: all 1s ease-in;
+      -ms-transition: all 1s ease-in;
+      -o-transition: all 1s ease-in;
+      transition: all 1s ease-in;
+    }
+
+    #imagen {
+      background: #FFFFFF;
+      padding: 1em;
+      margin-top: 2em;
+      margin-left: 2em;
+      -webkit-transition: all 2s ease-out;
+      -moz-transition: all 2s ease-out;
+      -ms-transition: all 2s ease-out;
+      -o-transition: all 2s ease-out;
+      transition: all 2s ease-out;
+      display: inline-block;
+      vertical-align: top;
+      margin-bottom: 2em;
+    }
+
+    #imagen:hover {
+      background: #e7e6e8;
+      -moz-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -webkit-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -o-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -ms-transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      transform: scale(1) rotate(0deg) translateX(0px) translateY(-20px) skewX(0deg) skewY(0deg);
+      -webkit-transition: all 1s ease-in;
+      -moz-transition: all 1s ease-in;
+      -ms-transition: all 1s ease-in;
+      -o-transition: all 1s ease-in;
+      transition: all 1s ease-in;
+    }
+    /* Estilos CSS para el footer de la pagina web  */
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Open Sans', sans-serif;
+    }
+    /*:::::Pie de Pagina*/
+    .pie-pagina{
+        width: 100%;
+        background-color: #0a141d;
+    }
+    .pie-pagina .grupo-1{
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap:50px;
+        padding: 45px 0px;
+    }
+    .pie-pagina .grupo-1 .box figure{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .pie-pagina .grupo-1 .box figure img{
+        width: 250px;
+    }
+    .pie-pagina .grupo-1 .box h2{
+        color: #fff;
+        margin-bottom: 25px;
+        font-size: 20px;
+    }
+    .pie-pagina .grupo-1 .box p{
+        color: #efefef;
+        margin-bottom: 10px;
+    }
+    .pie-pagina .grupo-1 .red-social a{
+        display: inline-block;
+        text-decoration: none;
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        color: #fff;
+        margin-right: 10px;
+        background-color: #0d2033;
+        text-align: center;
+        transition: all 300ms ease;
+    }
+    .pie-pagina .grupo-1 .red-social a:hover{
+        color: aqua;
+    }
+    .pie-pagina .grupo-2{
+        background-color: #0a1a2a;
+        padding: 15px 10px;
+        text-align: center;
+        color: #fff;
+    }
+    .pie-pagina .grupo-2 small{
+        font-size: 15px;
+    }
+    @media screen and (max-width:800px){
+        .pie-pagina .grupo-1{
+            width: 90%;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap:30px;
+            padding: 35px 0px;
+        }
+    }
+    /* Estilos CSS para hacer la página en modo prieto */
+    #modo{
+      width: 30px;
+      font-size: 70px;
+      margin: auto;
+      cursor: pointer;
+    }
+    .dark{
+      background: #000117;
+    }
+    .dark #modo{
+      color: orange
+    }
+    .dark #logo{
+      background: #000117;
+    }
+    .dark #imagen{
+      background: #FFFFFF;
+    }
+    .dark p {
+      color: white;
+    }
+    .dark #mision{
+      background: #030538;
+    }
+    .dark .container{
+      background : #030538; 
+    }
+    .dark label{
+      color: white;
+    }
+    .dark #datos-ingresados{
+      color:white;
+    }
   </style>
 </head>
 
-<body>
+<body class="">
   <header>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -196,24 +393,70 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/03a89292db.js" crossorigin="anonymous"></script>
     <section>
       <div class="conte">
-        <p>Bienvenido a Calcula Tu Ahorro</p>
+        <p id="inicio">Bienvenido a Calcula Tu Ahorro</p>
         <p id="slogan">¡Lo mejor te espera!</p>
       </div>
     </section>
   </header>
+    <div class="modo" id="modo">
+      <i class="fas fa-toggle-on"></i>
+    </div>
+    <script>
+      let modo=document.getElementById("modo");
+      let body=document.body;
+      modo.addEventListener("click", function(){
+          let val=body.classList.toggle("dark")
+          localStorage.setItem("modo",val)
+      })
+      let valor=localStorage.getItem("modo")
 
-  <section>
-    <section id="mision">
-      <dt>Misión</dt>
-      <dd>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam placeat voluptatem eos numquam dicta, tenetur beatae accusantium adipisci labore ab asperiores sapiente fuga fugit, eveniet quasi impedit debitis, hic dolor?</dd>
-      <img id="logo" src="{% static 'images/logo.png' %}">
+      if (valor=="true") {
+          body.classList.add("dark")
+      } else {
+          body.classList.remove("dark")
+      }
+    </script>
+
+  <section align="center" background="White">
+    <section id="logo" align="center">
+      <img id="logo" src="{% static 'images/logo2.png' %}" >
     </section>
+
+    <section2 id="mision" align="center">
+      <dt><font face="Roboto" size=12>¿Qué es "Calcula tu Ahorro"?</font></dt>
+      <dd aling="center"> 
+        <p style="text-align: justify;"><font face="Roboto" size=5>
+        En la actualidad existen muchas opciones de bancos para los clientes, dichas opciones son diversas en cuanto a sus ofrecimientos dependiendo del servicio que solicitemos dentro de cada una, uno de los servicios más solicitados es el de ahorros, el cual permite al usuario depositar cierta cantidad de dinero en su banco de preferencia y este guardarlo para un futuro, lo llamativo de esto es que el banco utiliza ese dinero para hacer ciertas inversiones y obtener un rendimiento de este efectivo, de dichas inversiones le toca un porcentaje al cliente que lo depositó, significando un crecimiento del dinero ahorrado, este porcentaje es conocido como tasa de interés y cada una de las opciones de los bancos lo asigna para poder incitar a que los clientes abran una cuenta y guarden su dinero 
+      </p>
+      <p style="text-align: justify;"><font face="Roboto" size=5> 
+        Es por ello por lo que se busca facilitar al usuario escoger la mejor opción que existen, es por eso que se recopilan datos de internet y se meten en un modelo matemático que proyecta el crecimiento del ya anteriormente mencionado deposito de una cuenta de ahorros
+      </p>
+    </font>
+      </dd>
+    </section2>
+    <section2 id="mision" align="center">
+      <dt>
+        <font face="Roboto" size=12>¿Cómo funciona?</font></dt>
+          <dd aling="center"> <p style="text-align: justify;"><font face="Roboto" size=5>
+            El crecimiento de un depósito puede ser calculado con un modelo matemático conocido como crecimiento Modelo de Crecimiento de población, el cual consiste en el aumento drástico de la tasa de crecimiento, dicho crecimiento puede ser representado en una gráfica con forma de j como se aprecia en la siguiente imagen:
+          </p><div align="center"><img id="imagen"  src="{% static 'images/modelo.jpg' %}" > </div>
+          <p style="text-align: justify;">Este crecimiento es exponencial y aumentan según el siguiente modelo matemático:
+          y=y0 e^kt
+          </p>
+          <p style="text-align: justify;">
+            Donde y0 representa el depósito inicial y donde k es la constante del crecimiento, en este caso, es la tasa de interés de un banco, a su vez, esta debe ser mayor de 0, por último, la t es una variable que representa el crecimiento en función de los años, cabe mencionar que este modelo solo se realiza en base al tiempo y no toma en cuenta retiros o depósitos dentro de ese lapso de tiempo
+          </p>
+        </font>
+          </dd>
+    </section2>
   </section>
 
   <div class="container">
-    <h2>Actualizar Datos</h2>
+    <h2><p>Actualizar Datos </p></h2>
     <form id="data-form">
       <label for="cantidad">Cantidad de Pesos Mexicanos:</label>
       <input type="number" id="cantidad" name="cantidad" required />
@@ -224,7 +467,7 @@
       <button type="submit">Actualizar</button>
     </form>
 
-    <h2>Datos Ingresados:</h2>
+    <h2><p>Datos Ingresados:</p></h2>
     <p id="datos-ingresados"></p>
   </div>
   <!-- Contenedor principal -->
@@ -234,7 +477,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+  
   <script>
     const ctx = document.getElementById('myChart');
 
@@ -382,6 +625,35 @@
       }
     }
   </script>
+  <footer class="pie-pagina">
+    <div class="grupo-1">
+        <div class="box">
+            <figure>
+                <a href="#">
+                    
+                    <img id="logo2" src="{% static 'images/logo2.png' %}" >
+                </a>
+            </figure>
+        </div>
+        <div class="box">
+            <h2>SOBRE NOSOTROS</h2>
+            <p>Somos un par de estudiantes de la Universidad Autonoma del Estado de México que realiza su proyecto final  </p>
+            <p>Creado unicamente por motivos didacticos libres de lucro</p>
+        </div>
+        <div class="box">
+            <h2>SIGUENOS</h2>
+            <div class="red-social">
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-instagram"></a>
+                <a href="#" class="fa fa-twitter"></a>
+                <a href="#" class="fa fa-youtube"></a>
+            </div>
+        </div>
+    </div>
+    <div class="grupo-2">
+        <small>&copy; 2023 <b>ALVARO JESUS CASTRO PIZAÑA & DIEGO GOMEZ TAGLE GONZALEZ</b> - Todos los Derechos Reservados.</small>
+    </div>
+</footer>
 </body>
 
 </html>
