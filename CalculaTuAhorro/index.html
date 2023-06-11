@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html>
 
@@ -19,7 +18,7 @@
       color: black;
     }
     header {
-      background: url("{% static 'images/fondo.jpg' %}");
+      background: url("images/fondo.jpg");
       height: 450px;
       background-size: cover;
       background-repeat: no-repeat;
@@ -39,16 +38,7 @@
 
     section h1 {
       font-size: 44px;
-
-        {
-        % comment %
-      }
-
       color: white;
-
-        {
-        % endcomment %
-      }
     }
 
     .conte {
@@ -423,7 +413,7 @@
 
   <section align="center" background="White">
     <section id="logo" align="center">
-      <img id="logo" src="{% static 'images/logo2.png' %}" >
+      <img id="logo" src="images/logo2.png" >
     </section>
 
     <section2 id="mision" align="center">
@@ -443,7 +433,7 @@
         <font face="Roboto" size=12>¿Cómo funciona?</font></dt>
           <dd aling="center"> <p style="text-align: justify;"><font face="Roboto" size=5>
             El crecimiento de un depósito puede ser calculado con un modelo matemático conocido como crecimiento Modelo de Crecimiento de población, el cual consiste en el aumento drástico de la tasa de crecimiento, dicho crecimiento puede ser representado en una gráfica con forma de j como se aprecia en la siguiente imagen:
-          </p><div align="center"><img id="imagen"  src="{% static 'images/modelo.jpg' %}" > </div>
+          </p><div align="center"><img id="imagen"  src="images/modelo.jpg" > </div>
           <p style="text-align: justify;">Este crecimiento es exponencial y aumentan según el siguiente modelo matemático:
           y=y0 e^kt
           </p>
@@ -481,9 +471,13 @@
   <script>
     const ctx = document.getElementById('myChart');
 
-    const labels = {{ labels| safe }};
-    const data = {{ data| safe }};
-    const colores = {{ colors| safe }};
+    const labels = ["CitiBanamex", "Santander", "Azteca"];
+    const data = [.12, .08, .056];
+    const colores = [
+      'rgba(5, 103, 165, 1)',
+      'rgba(237, 0, 0, 1)',
+      'rgba(3, 93, 61, 1)'
+    ];
     const colors = [
       'rgba(255, 99, 132, 0.6)',
       'rgba(54, 162, 235, 0.6)',
@@ -633,7 +627,7 @@
             <figure>
                 <a href="#">
                     
-                    <img id="logo2" src="{% static 'images/logo2.png' %}" >
+                    <img id="logo2" src="images/logo2.png" >
                 </a>
             </figure>
         </div>
