@@ -483,6 +483,7 @@
 
     const labels = {{ labels| safe }};
     const data = {{ data| safe }};
+    const colores = {{ colors| safe }};
     const colors = [
       'rgba(255, 99, 132, 0.6)',
       'rgba(54, 162, 235, 0.6)',
@@ -587,28 +588,29 @@
 
     function generarGraficas(etiquetas, datos, titulos) {
       const chartContainer = document.getElementById('chart-container');
-
+    
       // Eliminar gráficas anteriores
       chartContainer.innerHTML = '';
-
+    
       for (let i = 0; i < etiquetas.length; i++) {
         const canvas = document.createElement('canvas');
         chartContainer.appendChild(canvas);
-
+    
         const ctx = canvas.getContext('2d');
-
+    
         const data = datos[i];
         const labels = etiquetas[i];
         const titulo = titulos[i];
-
+        const color = colores[i % colores.length]; // Obtener los valores de color correspondientes
+        alert(color);
         new Chart(ctx, {
           type: 'line',
           data: {
             labels: labels,
             datasets: [{
-              label: titulo, // Utilizar el título correspondiente
+              label: titulo,
               data: data,
-              backgroundColor: 'rgba(255, 99, 132, 0.6)',
+              backgroundColor: color, // Utilizar el color correspondiente
               borderColor: 'rgba(54, 162, 235, 1)',
               borderWidth: 1
             }]
@@ -624,6 +626,7 @@
         });
       }
     }
+    
   </script>
   <footer class="pie-pagina">
     <div class="grupo-1">
